@@ -3,11 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="src/searchable.scss" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/index.ts"></script>
+
+    <style>
+      .searchable th.foo {
+        color: red !important;
+      }
+
+      .searchable th.foo {
+        color: red !important;
+      }
+
+      tr:has([data-val*='0']) {
+        background: #ffe0e0;
+      }
+
+      .searchable tbody tr:not(:has([data-val*='0'])) {
+        background: orange;
+      }
+    </style>
+
+    <table class="table table-bordered searchable" data-btn-pos="top left" data-icon="ᯤ">
+      <thead>
+        <tr>
+          <th scope="col" class="foo">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Category</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-val="laptop">Laptop</td>
+          <td data-val="999">$999</td>
+          <td data-val="electronics">Electronics</td>
+          <td data-val="15">15</td>
+        </tr>
+        <tr>
+          <td data-val="coffee-mug">Coffee Mug</td>
+          <td data-val="12">$12</td>
+          <td data-val="kitchen">Kitchen</td>
+          <td data-val="50">50</td>
+        </tr>
+        <tr>
+          <td data-val="notebook">Notebook</td>
+          <td data-val="5">$5</td>
+          <td data-val="office">Office</td>
+          <td data-val="100">100</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-bordered searchable" style="margin-top: 50px" data-btn-pos="top right">
+      <thead>
+        <tr>
+          <th scope="col" class="foo">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Category</th>
+          <th scope="col">Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-val="laptop">Laptop</td>
+          <td data-val="999">$999</td>
+          <td data-val="electronics">Electronics</td>
+          <td data-val="15">15</td>
+        </tr>
+        <tr>
+          <td data-val="coffee-mug">Coffee Mug</td>
+          <td data-val="12">$12</td>
+          <td data-val="kitchen">Kitchen</td>
+          <td data-val="50">50</td>
+        </tr>
+        <tr>
+          <td data-val="notebook">Notebook</td>
+          <td data-val="5">$5</td>
+          <td data-val="office">Office</td>
+          <td data-val="100">100</td>
+        </tr>
+      </tbody>
+    </table>
+    <script type="module" src="/src/searchable.ts"></script>
+    <!-- <script type="module" src="/src/index.ts"></script>
+    <script src="searchable.min.js"></script> -->
+    <script></script>
   </body>
 </html>
