@@ -1,4 +1,4 @@
-import { prepareSearchableTable } from './prepareSearchableTable'
+import { toggleSearchable } from './toggleSearchable'
 
 export function searchableEventlistener(event: MouseEvent) {
   // Find the closest .searchable table ancestor
@@ -12,10 +12,6 @@ export function searchableEventlistener(event: MouseEvent) {
     event.clientY < rect.top ||
     event.clientY > rect.bottom
   ) {
-    console.log('Clicked outside the table = sort "button"')
-  } else {
-    console.log('Clicked inside the table')
+    toggleSearchable(table as HTMLTableElement)
   }
-  prepareSearchableTable(table as HTMLTableElement)
-  table.classList.add('searching')
 }
