@@ -9,8 +9,6 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
-
     <style>
       .searchable th.foo {
         color: red !important;
@@ -29,13 +27,18 @@
       }
     </style>
 
-    <table class="table table-bordered searchable" data-btn-pos="top left" data-icon="ᯤ">
+    <table
+      class="table table-bordered searchable"
+      data-sb-pos="top left"
+      data-sb-icon="ᯤ"
+      data-sb-input-class="m-2 p-2 bg-red-100 border border-red-300 rounded-lg"
+    >
       <thead>
         <tr>
-          <th scope="col" class="foo">Product</th>
-          <th scope="col">Price</th>
-          <th scope="col">Category</th>
-          <th scope="col">Stock</th>
+          <th class="foo">Product</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Stock</th>
         </tr>
       </thead>
       <tbody>
@@ -63,10 +66,10 @@
     <table class="table table-bordered searchable" style="margin-top: 50px" data-btn-pos="top right">
       <thead>
         <tr>
-          <th scope="col" class="foo">Product</th>
-          <th scope="col">Price</th>
-          <th scope="col">Category</th>
-          <th scope="col">Stock</th>
+          <th class="foo">Product</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Stock</th>
         </tr>
       </thead>
       <tbody>

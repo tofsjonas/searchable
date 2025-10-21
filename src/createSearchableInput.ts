@@ -1,3 +1,4 @@
+import { generateSearchableDataValues } from './generateSearchableDataValues'
 import { handleSearchableInput } from './handleSearchableInput'
 
 export function createSearchAbleInput(table: HTMLTableElement): void {
@@ -19,6 +20,8 @@ export function createSearchAbleInput(table: HTMLTableElement): void {
 
   // Add event listener to filter table rows based on search input
   input.addEventListener('input', () => {
+    // In case there have been changes to the table data, regenerate searchable data values
+    void generateSearchableDataValues(table)
     handleSearchableInput(input, table)
   })
   input.focus()

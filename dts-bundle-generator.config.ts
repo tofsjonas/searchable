@@ -1,8 +1,8 @@
 const config = {
   entries: [
     {
-      filePath: './src/index.ts',
-      outFile: './build/dist/index.d.ts',
+      filePath: './src/searchable.ts',
+      outFile: './build/dist/searchable.d.ts',
       noCheck: false,
     },
   ],

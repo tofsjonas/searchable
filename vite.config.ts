@@ -16,21 +16,27 @@ const getPackageNameCamelCase = () => {
 }
 
 const fileName = {
-  es: `${getPackageName()}.js`,
+  es: `${getPackageName()}.es.js`,
   iife: `${getPackageName()}.iife.js`,
-}
+} as const
 
 const formats = Object.keys(fileName) as Array<keyof typeof fileName>
 
 export default defineConfig({
   base: './',
   build: {
-    outDir: './build/dist',
+    outDir: './dist',
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(__dirname, 'src/searchable.ts'),
       name: getPackageNameCamelCase(),
       formats,
-      fileName: format => fileName[format],
+      fileName: format => fileName[format as keyof typeof fileName],
+    },
+    rollupOptions: {
+      external: [],
+      output: {
+        assetFileNames: () => 'searchable.css',
+      },
     },
   },
   test: {
