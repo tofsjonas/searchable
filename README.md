@@ -1,61 +1,164 @@
-# vite-vanilla-ts-lib-starter
+<!-- markdownlint-disable MD033 MD026 -->
+<h1>searchable</h1>
+<h5>- a tiny, vanilla/plain JavaScript table search</h5>
 
-The starter is built on top of Vite 7.x and prepared for writing libraries in TypeScript. It generates a package with support for ESM modules and IIFE.
+Makes any table with **class="searchable"**, well, searchable. The CSS adds a button that, when clicked, inserts a search input at the top of the table. Then you can just start typing to filter rows.
 
-## Features
+Just include the JavaScript+CSS and it will work. No function calls are needed, everything is handled by **eventListeners**.
 
-- ESM modules
-- IIFE bundle for direct browser support without bundler
-- Typings bundle
-- ESLint - scripts linter
-- Stylelint - styles linter
-- Prettier - formatter
-- Vitest - test framework
-- Husky + lint-staged - pre-commit git hook set up for formatting
+(If you use tables, check out <https://github.com/tofsjonas/sortable>, a tiny table _sorter_.)
 
-## GitHub Template
+<h2>Demo</h2>
 
-This is a template repo. Click the green [Use this template](https://github.com/kbysiec/vite-vanilla-ts-lib-starter/generate) button to get started.
+You can find a simple demo on <https://tofsjonas.github.io/searchable/>
 
-## Clone to local
+<h2>Table of Contents</h2>
 
-If you prefer to do it manually with the cleaner git history
+<!-- TOC -->
 
-```bash
-git clone https://github.com/kbysiec/vite-vanilla-ts-lib-starter.git
-cd vite-vanilla-ts-lib-starter
-npm i
+- [Factoids](#factoids)
+- ["Installation"](#installation)
+  - [link to jsDelivr](#link-to-jsdelivr)
+  - [copy file to assets folder](#copy-file-to-assets-folder)
+- [Basic Usage](#basic-usage)
+- [Configuration](#configuration)
+  - [Button Position](#button-position)
+  - [Custom Button Icon](#custom-button-icon)
+  - [Custom Input Classes](#custom-input-classes)
+- [How It Works](#how-it-works)
+
+<!-- /TOC -->
+
+## Factoids
+
+- **1.65K** minified. (908 bytes gzipped)
+
+- Works with **JavaScript generated tables**. (since we are using an eventListener)
+
+- **Lightning fast**. Works great even with large tables.
+
+- Requires **thead** and **tbody**.
+
+- NOT tested with React, Angular, Vue, etc.
+
+- Works with [Svelte](https://svelte.dev/)!
+
+## "Installation"
+
+There are two ways to use searchable:
+
+### link to jsDelivr
+
+```html
+<table class="searchable">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Laptop</td>
+      <td>$999</td>
+      <td>Electronics</td>
+    </tr>
+    <tr>
+      <td>Coffee Mug</td>
+      <td>$12</td>
+      <td>Kitchen</td>
+    </tr>
+  </tbody>
+</table>
+<link href="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.js"></script>
 ```
 
-## Checklist
+⚠️ _If you are concerned about bugs, I recommend using version numbers instead of "latest"._
 
-When you use this template, update the following:
+### copy file to assets folder
 
-- Remove `.git` directory and run `git init` to clean up the history
-- Change the name in `package.json` - it will be the name of the IIFE bundle global variable and bundle files name (`.mjs`, `.iife.js`, `d.ts`)
-- Change the author name in `LICENSE`
-- Clean up the `README` and `CHANGELOG` files
+Same as above, but link to your own files from the `dist` directory
 
-And, enjoy 😊
+```html
+...
+<link href="/assets/searchable.min.css" rel="stylesheet" />
+<script src="/assets/searchable.min.js"></script>
+...
+```
 
-## Usage
+## Basic Usage
 
-The starter contains the following scripts:
+Simply add `class="searchable"` to any table with proper `<thead>` and `<tbody>` structure:
 
-- `dev` - starts dev server
-- `build` - generates the following bundles: ESM (`.js`) and IIFE (`.iife.js`). The name of bundle is automatically taken from `package.json` name property
-- `test` - starts vitest and runs all tests
-- `test:coverage` - starts vitest and run all tests with code coverage report
-- `lint:scripts` - lint `.ts` files with eslint
-- `lint:styles` - lint `.css` and `.scss` files with stylelint
-- `format:scripts` - format `.ts`, `.html` and `.json` files with prettier
-- `format:styles` - format `.cs` and `.scss` files with stylelint
-- `format` - format all with prettier and stylelint
-- `prepare` - script for setting up husky pre-commit hook
-- `uninstall-husky` - script for removing husky from repository
+```html
+<table class="searchable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Doe</td>
+      <td>john@example.com</td>
+      <td>Engineering</td>
+    </tr>
+    <tr>
+      <td>Jane Smith</td>
+      <td>jane@example.com</td>
+      <td>Marketing</td>
+    </tr>
+  </tbody>
+</table>
+```
 
-## Acknowledgment
+A search button will automatically appear. Click it to show/hide the search input field.
 
-If you found it useful somehow, I would be grateful if you could leave a star in the project's GitHub repository.
+## Configuration
 
-Thank you.
+You can customize the search functionality using data attributes:
+
+### Button Position
+
+Control where the search button appears using `data-sb-pos`:
+
+```html
+<!-- Button on top-left (default) -->
+<table class="searchable" data-sb-pos="top left"></table>
+<!-- Button on top-right -->
+<table class="searchable" data-sb-pos="top right"></table>
+```
+
+### Custom Button Icon
+
+Change the search button icon using `data-sb-icon`:
+
+```html
+<table class="searchable" data-sb-icon="🔍">
+  <table class="searchable" data-sb-icon="⚲">
+    <table class="searchable" data-sb-icon="ᯤ"></table>
+  </table>
+</table>
+```
+
+### Custom Input Classes
+
+Style the search input field using `data-sb-input-class`:
+
+```html
+<table class="searchable" data-sb-input-class="m-2 p-2 bg-blue-100 border border-blue-300 rounded-lg"></table>
+```
+
+This is particularly useful when using CSS frameworks like Tailwind CSS.
+
+## How It Works
+
+- **Event-driven**: Uses a single click event listener on the document
+- **Auto-detection**: Automatically detects clicks on `.searchable` tables
+- **Dynamic input**: Creates search input on demand, removes it when not needed
+- **Real-time filtering**: Filters table rows as you type
+- **Lightweight**: No dependencies, vanilla JavaScript only

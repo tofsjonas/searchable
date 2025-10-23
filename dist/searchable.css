@@ -1,0 +1,34 @@
+@charset "UTF-8";
+.searchable {
+  margin-top: 25px;
+  position: relative;
+}
+.searchable[data-btn-pos='top left']:before {
+  content: attr(data-icon, '🔎');
+  cursor: pointer;
+  height: 25px;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: -25px;
+  width: 25px;
+}
+.searchable[data-btn-pos='top right']:before {
+  content: attr(data-icon, '🔎');
+  cursor: pointer;
+  height: 25px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: -25px;
+  width: 25px;
+}
+.searchable:hover:before {
+  transform: scale(1.1);
+}
+.searchable thead input[type='search'] {
+  box-sizing: border-box;
+  font-size: 1em;
+  padding: 5px;
+  width: 100%;
+}

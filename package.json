@@ -1,12 +1,18 @@
 {
   "name": "searchable",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
-  "module": "./dist/searchable.js",
+  "main": "./dist/searchable.iife.js",
+  "module": "./dist/searchable.es.js",
+  "unpkg": "./dist/searchable.min.js",
+  "jsdelivr": "./dist/searchable.min.js",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/searchable.js"
+      "import": "./dist/searchable.es.js",
+      "require": "./dist/searchable.iife.js",
+      "script": "./dist/searchable.min.js",
+      "types": "./dist/index.d.ts"
     },
     "./dist/": {
       "import": "./dist/"
@@ -15,9 +21,12 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite --host",
-    "build": "rimraf dist/**/* && tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts && copyfiles ./package.json build",
+    "es-to-iife": "tsx ./scripts/es-to-iife.ts",
+    "file-sizes": "./scripts/file-sizes.sh",
+    "prettier": "prettier --config .prettierrc.js --write ./dist/searchable.*.js --ignore-path /dev/null",
+    "build": "tsc && vite build && npm run es-to-iife && npm run prettier && npm run compile",
     "test": "vitest",
-    "compile": "google-closure-compiler --js=./dist/searchable.iife.js --js_output_file=./dist/searchable.min.js",
+    "compile": "google-closure-compiler --compilation_level ADVANCED_OPTIMIZATIONS --js=./dist/searchable.iife.js --js_output_file=./dist/searchable.min.js",
     "test:coverage": "vitest --coverage",
     "lint:scripts": "eslint . --ext .ts",
     "lint:styles": "stylelint ./**/*.{css,scss}",
@@ -53,10 +62,11 @@
     "stylelint-config-sass-guidelines": "^12.1.0",
     "stylelint-order": "^7.0.0",
     "stylelint-prettier": "^5.0.3",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1",
     "vite": "^7.1.10",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^3.2.4"
   }
 }
