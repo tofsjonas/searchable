@@ -1,6 +1,8 @@
 export function getSearchableTableCellValue(element: HTMLTableCellElement): string | number {
   if (!element) return ''
-  if (element.dataset.sort !== undefined) return element.dataset.sort
+
+  // When searching we want the visible strings, not hidden values
+  // if (element.dataset.sort !== undefined) return element.dataset.sort
 
   const first_child = element.firstChild
   if (first_child) {

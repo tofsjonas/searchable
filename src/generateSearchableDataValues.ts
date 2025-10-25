@@ -14,7 +14,7 @@ export async function generateSearchableDataValues(table: HTMLTableElement): Pro
     // Do your work here
     const cells = table.querySelectorAll('tbody td:not([data-val])') as NodeListOf<HTMLTableCellElement>
     for (let i = 0; i < cells.length; i++) {
-      cells[i].setAttribute('data-val', getSearchableTableCellValue(cells[i]).toString())
+      cells[i].setAttribute('data-val', getSearchableTableCellValue(cells[i]).toString().toLowerCase())
     }
   } while (rerun)
   running = false

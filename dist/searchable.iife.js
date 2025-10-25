@@ -1,7 +1,6 @@
 ;(function (document) {
   function getSearchableTableCellValue(element) {
     if (!element) return ''
-    if (element.dataset.sort !== void 0) return element.dataset.sort
     const first_child = element.firstChild
     if (first_child)
       switch (first_child.nodeName) {
@@ -30,12 +29,12 @@
       rerun = !1
       const cells = table.querySelectorAll('tbody td:not([data-val])')
       for (let i = 0; i < cells.length; i++)
-        cells[i].setAttribute('data-val', getSearchableTableCellValue(cells[i]).toString())
+        cells[i].setAttribute('data-val', getSearchableTableCellValue(cells[i]).toString().toLowerCase())
     } while (rerun)
     running = !1
   }
   function handleSearchableInput(input, table) {
-    const filter = input.value.toLowerCase().trim()
+    const filter = input.value.toLowerCase()
     let style = document.getElementById('css-' + table.id)
     style ||
       ((style = document.createElement('style')), (style.id = 'css-' + table.id), document.head.appendChild(style))
@@ -48,22 +47,27 @@
   function createSearchAbleInput(table) {
     let input = table.tHead.querySelector('input[type="search"]')
     if (!input) {
-      ;((input = document.createElement('input')), (input.type = 'search'), (input.placeholder = 'Search...'))
+      ;((input = document.createElement('input')),
+        (input.type = 'search'),
+        (input.placeholder = table.dataset.sbPlaceholder ?? '...'),
+        (input.className = table.dataset.sbInputClass || ''))
       const td = document.createElement('td')
       ;((td.colSpan = table.tHead?.rows[0].cells.length || 1), td.appendChild(input))
       const tr = document.createElement('tr')
-      ;((tr.id = `tr-${table.id}`), tr.appendChild(td), table.tHead?.insertBefore(tr, table.tHead.firstChild))
+      ;((tr.id = `tr-${table.id}`),
+        tr.appendChild(td),
+        table.tHead?.appendChild(tr),
+        input.addEventListener('input', () => {
+          ;(generateSearchableDataValues(table), handleSearchableInput(input, table))
+        }))
     }
-    ;(input.addEventListener('input', () => {
-      ;(generateSearchableDataValues(table), handleSearchableInput(input, table))
-    }),
-      input.focus())
+    input.focus()
   }
   function generateRandomId() {
     return /* @__PURE__ */ new Date().getTime().toString(36) + '-' + Math.random().toString(36).substring(2, 9)
   }
   function prepareSearchableTable(table) {
-    ;(table.id || (table.id = 'st-' + generateRandomId()),
+    ;(table.id || (table.id = 'sb-' + generateRandomId()),
       createSearchAbleInput(table),
       generateSearchableDataValues(table))
   }
@@ -85,5 +89,5 @@
       event.clientY > rect.bottom) &&
       toggleSearchable(table)
   }
-  document.addEventListener('click', searchableEventlistener)
+  typeof document < 'u' && document.addEventListener('click', searchableEventlistener)
 })(document)

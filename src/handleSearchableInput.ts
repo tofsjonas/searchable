@@ -1,5 +1,5 @@
 export function handleSearchableInput(input: HTMLInputElement, table: HTMLTableElement) {
-  const filter = input.value.toLowerCase().trim()
+  const filter = input.value.toLowerCase()
 
   let style = document.getElementById('css-' + table.id) as HTMLStyleElement
   if (!style) {

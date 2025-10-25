@@ -4,9 +4,9 @@
 
 Makes any table with **class="searchable"**, well, searchable. The CSS adds a button that, when clicked, inserts a search input at the top of the table. Then you can just start typing to filter rows.
 
-Just include the JavaScript+CSS and it will work. No function calls are needed, everything is handled by **eventListeners**.
+Just include the JavaScript+CSS and it will work. No function calls are needed. All the magic is handled using [JavaScript HTML DOM EventListener](https://www.w3schools.com/js/js_htmldom_eventlistener.asp) and the [CSS :has() Pseudo-class](https://www.w3schools.com/cssref/sel_has.php)
 
-(If you use tables, check out <https://github.com/tofsjonas/sortable>, a tiny table _sorter_.)
+(If you use HTML tables, also check out <https://github.com/tofsjonas/sortable>, a tiny table _sorter_.)
 
 <h2>Demo</h2>
 
@@ -31,7 +31,7 @@ You can find a simple demo on <https://tofsjonas.github.io/searchable/>
 
 ## Factoids
 
-- **1.65K** minified. (908 bytes gzipped)
+- **1.64K** minified. (903 bytes gzipped)
 
 - Works with **JavaScript generated tables**. (since we are using an eventListener)
 
@@ -83,7 +83,7 @@ Same as above, but link to your own files from the `dist` directory
 
 ```html
 ...
-<link href="/assets/searchable.min.css" rel="stylesheet" />
+<link href="/assets/searchable.css" rel="stylesheet" />
 <script src="/assets/searchable.min.js"></script>
 ...
 ```
@@ -124,13 +124,13 @@ You can customize the search functionality using data attributes:
 
 ### Button Position
 
-Control where the search button appears using `data-sb-pos`:
+Control where the search button appears using `class="sb-right|sb-left"`:
 
 ```html
-<!-- Button on top-left (default) -->
-<table class="searchable" data-sb-pos="top left"></table>
-<!-- Button on top-right -->
-<table class="searchable" data-sb-pos="top right"></table>
+<!-- Button on top-right (default) -->
+<table class="searchable"></table>
+<!-- Button on top-left -->
+<table class="searchable sb-left"></table>
 ```
 
 ### Custom Button Icon
@@ -138,11 +138,9 @@ Control where the search button appears using `data-sb-pos`:
 Change the search button icon using `data-sb-icon`:
 
 ```html
-<table class="searchable" data-sb-icon="🔍">
-  <table class="searchable" data-sb-icon="⚲">
-    <table class="searchable" data-sb-icon="ᯤ"></table>
-  </table>
-</table>
+<table class="searchable" data-sb-icon="Search"></table>
+<table class="searchable" data-sb-icon="⚲"></table>
+<table class="searchable" data-sb-icon="ᯤ"></table>
 ```
 
 ### Custom Input Classes
@@ -150,10 +148,16 @@ Change the search button icon using `data-sb-icon`:
 Style the search input field using `data-sb-input-class`:
 
 ```html
-<table class="searchable" data-sb-input-class="m-2 p-2 bg-blue-100 border border-blue-300 rounded-lg"></table>
+<table class="searchable" data-sb-input-class="m-2 p-2 bg-blue-100"></table>
 ```
 
-This is particularly useful when using CSS frameworks like Tailwind CSS.
+This is particularly useful when using CSS frameworks like Tailwind CSS or Bootstrap.
+
+#### Custom message if the table is empty
+
+```html
+<table class="searchable" data-sb-empty="Sorry, no results found"></table>
+```
 
 ## How It Works
 
