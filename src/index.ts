@@ -2,7 +2,6 @@
 export { createSearchAbleInput } from './createSearchableInput'
 export { generateRandomId } from './generateRandomId'
 export { generateSearchableDataValues } from './generateSearchableDataValues'
-export { getSearchableTableCellValue } from './getSearchableTableCellValue'
 export { handleSearchableInput } from './handleSearchableInput'
 export { prepareSearchableTable } from './prepareSearchableTable'
 export { searchableEventlistener } from './searchableEventlistener'

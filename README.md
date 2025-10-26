@@ -1,53 +1,78 @@
-<!-- markdownlint-disable MD033 MD026 -->
+<!-- markdownlint-disable MD033 MD026 MD024 -->
 <h1>searchable</h1>
 <h5>- a tiny, vanilla/plain JavaScript table search</h5>
 
-Makes any table with **class="searchable"**, well, searchable. The CSS adds a button that, when clicked, inserts a search input at the top of the table. Then you can just start typing to filter rows.
+Makes any table with **class="searchable"** searchable. Click the search button to filter table rows in real-time as you type.
 
-Just include the JavaScript+CSS and it will work. No function calls are needed. All the magic is handled using [JavaScript HTML DOM EventListener](https://www.w3schools.com/js/js_htmldom_eventlistener.asp) and the [CSS :has() Pseudo-class](https://www.w3schools.com/cssref/sel_has.php)
+Just include the JavaScript+CSS and it works automatically. No function calls needed.
 
-(If you use HTML tables, also check out <https://github.com/tofsjonas/sortable>, a tiny table _sorter_.)
+<h2>Related Projects</h2>
+
+**[sortable](https://github.com/tofsjonas/sortable)** - makes tables sortable with similar simplicity.
 
 <h2>Demo</h2>
 
-You can find a simple demo on <https://tofsjonas.github.io/searchable/>
+<https://tofsjonas.github.io/searchable/>
 
 <h2>Table of Contents</h2>
 
 <!-- TOC -->
 
-- [Factoids](#factoids)
-- ["Installation"](#installation)
-  - [link to jsDelivr](#link-to-jsdelivr)
-  - [copy file to assets folder](#copy-file-to-assets-folder)
-- [Basic Usage](#basic-usage)
+- [Features](#features)
+- [Installation](#installation)
+  - [CDN jsDelivr](#cdn-jsdelivr)
+  - [Local files](#local-files)
+- [Usage](#usage)
 - [Configuration](#configuration)
   - [Button Position](#button-position)
   - [Custom Button Icon](#custom-button-icon)
-  - [Custom Input Classes](#custom-input-classes)
+    - [Per table](#per-table)
+    - [Globally](#globally)
+  - [Input Styling](#input-styling)
+    - [Per table](#per-table)
+    - [Globally](#globally)
+  - [Placeholder](#placeholder)
+    - [Per table](#per-table)
+    - [Globally](#globally)
+  - [Empty State Message](#empty-state-message)
+    - [Per table](#per-table)
+    - [Globally](#globally)
 - [How It Works](#how-it-works)
 
 <!-- /TOC -->
 
-## Factoids
+## Features
 
-- **1.64K** minified. (903 bytes gzipped)
+- **1.46K** minified (830 bytes gzipped)
+- **Real-time search** - filter as you type (case-insensitive)
+- **Works with dynamic tables** - JavaScript generated content supported
+- **Lightning fast** - handles large tables smoothly
+- **Zero dependencies** - vanilla JavaScript only
+- **Auto-initialization** - just add the class
+- **Customizable** - button position, icons, styling
+- **Modern browsers** - requires CSS `:has()` support [(Chrome 105+, Firefox 121+, Safari 15.4+)](https://caniuse.com/css-has)
 
-- Works with **JavaScript generated tables**. (since we are using an eventListener)
+## Installation
 
-- **Lightning fast**. Works great even with large tables.
+### CDN (jsDelivr)
 
-- Requires **thead** and **tbody**.
+```html
+<link href="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.js"></script>
+```
 
-- NOT tested with React, Angular, Vue, etc.
+### Local files
 
-- Works with [Svelte](https://svelte.dev/)!
+Copy files from `dist/` and link locally:
 
-## "Installation"
+```html
+<link href="/assets/searchable.css" rel="stylesheet" />
+<script src="/assets/searchable.min.js"></script>
+```
 
-There are two ways to use searchable:
+## Usage
 
-### link to jsDelivr
+Add `class="searchable"` to any table with `<thead>` and `<tbody>`:
 
 ```html
 <table class="searchable">
@@ -71,98 +96,99 @@ There are two ways to use searchable:
     </tr>
   </tbody>
 </table>
-<link href="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.js"></script>
 ```
 
-⚠️ _If you are concerned about bugs, I recommend using version numbers instead of "latest"._
-
-### copy file to assets folder
-
-Same as above, but link to your own files from the `dist` directory
-
-```html
-...
-<link href="/assets/searchable.css" rel="stylesheet" />
-<script src="/assets/searchable.min.js"></script>
-...
-```
-
-## Basic Usage
-
-Simply add `class="searchable"` to any table with proper `<thead>` and `<tbody>` structure:
-
-```html
-<table class="searchable">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Department</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>John Doe</td>
-      <td>john@example.com</td>
-      <td>Engineering</td>
-    </tr>
-    <tr>
-      <td>Jane Smith</td>
-      <td>jane@example.com</td>
-      <td>Marketing</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-A search button will automatically appear. Click it to show/hide the search input field.
+A search button appears automatically. Click it to show/hide the search input.
 
 ## Configuration
 
-You can customize the search functionality using data attributes:
-
 ### Button Position
 
-Control where the search button appears using `class="sb-right|sb-left"`:
-
 ```html
-<!-- Button on top-right (default) -->
-<table class="searchable"></table>
-<!-- Button on top-left -->
 <table class="searchable sb-left"></table>
+<!-- left -->
+<table class="searchable"></table>
+<!-- right (default) -->
 ```
 
 ### Custom Button Icon
 
-Change the search button icon using `data-sb-icon`:
+#### Per table
 
 ```html
+<table class="searchable" data-sb-icon="🔍"></table>
 <table class="searchable" data-sb-icon="Search"></table>
-<table class="searchable" data-sb-icon="⚲"></table>
-<table class="searchable" data-sb-icon="ᯤ"></table>
 ```
 
-### Custom Input Classes
+#### Globally
 
-Style the search input field using `data-sb-input-class`:
-
-```html
-<table class="searchable" data-sb-input-class="m-2 p-2 bg-blue-100"></table>
+```css
+.searchable::before {
+  content: 'anything you want' !important;
+}
 ```
 
-This is particularly useful when using CSS frameworks like Tailwind CSS or Bootstrap.
+### Input Styling
 
-#### Custom message if the table is empty
+#### Per table
 
 ```html
-<table class="searchable" data-sb-empty="Sorry, no results found"></table>
+<table class="searchable" data-sb-input-class="form-control"></table>
+```
+
+#### Globally
+
+Using HTML
+
+```html
+<script
+  data-sb-input-class="form-control bg-warning etc"
+  src="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.js"
+></script>
+```
+
+Using CSS
+
+```css
+.searchable thead input {
+  background: purple;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+```
+
+### Placeholder
+
+#### Per table
+
+```html
+<table class="searchable" data-sb-placeholder="Search..."></table>
+```
+
+#### Globally
+
+```html
+<script
+  data-sb-placeholder="Placeholder for all searchable inputs"
+  src="https://cdn.jsdelivr.net/gh/tofsjonas/searchable@latest/dist/searchable.min.js"
+></script>
+```
+
+### Empty State Message
+
+#### Per table
+
+```html
+<table class="searchable" data-sb-empty="No matches found"></table>
+```
+
+#### Globally
+
+```css
+.searchable thead::after {
+  content: 'Nothing here, move along' !important;
+}
 ```
 
 ## How It Works
 
-- **Event-driven**: Uses a single click event listener on the document
-- **Auto-detection**: Automatically detects clicks on `.searchable` tables
-- **Dynamic input**: Creates search input on demand, removes it when not needed
-- **Real-time filtering**: Filters table rows as you type
-- **Lightweight**: No dependencies, vanilla JavaScript only
+Uses event delegation and CSS `:has()` pseudo-class. The search input is created dynamically and filters rows by hiding non-matching content in real-time.

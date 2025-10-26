@@ -1,12 +1,33 @@
 {
   "name": "searchable",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/searchable.iife.js",
   "module": "./dist/searchable.es.js",
   "unpkg": "./dist/searchable.min.js",
   "jsdelivr": "./dist/searchable.min.js",
   "type": "module",
+  "license": "Unlicense",
+  "author": "Jonas Earendel",
+  "homepage": "https://github.com/tofsjonas/searchable",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tofsjonas/searchable"
+  },
+  "keywords": [
+    "search",
+    "filter",
+    "html",
+    "table",
+    "plain",
+    "vanilla",
+    "javascript"
+  ],
+  "files": [
+    "./src",
+    "./dist",
+    "./CHANGELOG.md"
+  ],
   "exports": {
     ".": {
       "import": "./dist/searchable.es.js",
@@ -18,13 +39,16 @@
       "import": "./dist/"
     }
   },
+  "style": "dist/searchable.css",
+  "sass": "src/scss/searchable.scss",
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite --host",
     "es-to-iife": "tsx ./scripts/es-to-iife.ts",
     "file-sizes": "./scripts/file-sizes.sh",
+    "copy-files": "tsx ./scripts/copy-files.ts",
     "prettier": "prettier --config .prettierrc.js --write ./dist/searchable.*.js --ignore-path /dev/null",
-    "build": "tsc && vite build && npm run es-to-iife && npm run prettier && npm run compile",
+    "build": "tsc && vite build && npm run es-to-iife && npm run prettier && npm run compile && npm run copy-files && npm run file-sizes",
     "test": "vitest",
     "compile": "google-closure-compiler --compilation_level ADVANCED_OPTIMIZATIONS --js=./dist/searchable.iife.js --js_output_file=./dist/searchable.min.js",
     "test:coverage": "vitest --coverage",

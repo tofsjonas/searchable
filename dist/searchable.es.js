@@ -1,21 +1,3 @@
-function getSearchableTableCellValue(element) {
-  if (!element) return ''
-  const first_child = element.firstChild
-  if (first_child)
-    switch (first_child.nodeName) {
-      case 'TIME':
-        return first_child.dateTime
-      case 'DATA':
-        return first_child.value
-      case 'METER':
-        return first_child.value
-      case 'PROGRESS':
-        return first_child.value
-      case 'ABBR':
-        return first_child.title
-    }
-  return (element.textContent ?? '').trim()
-}
 let running = !1,
   rerun = !1
 async function generateSearchableDataValues(table) {
@@ -28,7 +10,7 @@ async function generateSearchableDataValues(table) {
     rerun = !1
     const cells = table.querySelectorAll('tbody td:not([data-val])')
     for (let i = 0; i < cells.length; i++)
-      cells[i].setAttribute('data-val', getSearchableTableCellValue(cells[i]).toString().toLowerCase())
+      cells[i].setAttribute('data-val', (cells[i].textContent ?? '').trim().toLowerCase())
   } while (rerun)
   running = !1
 }
@@ -42,19 +24,20 @@ function handleSearchableInput(input, table) {
 #${table.id} tbody tr:has([data-val*="${filter}"]){display:table-row;}`),
     (style.innerHTML = css))
 }
+const globalConfig = document.currentScript.dataset ?? {}
 function createSearchAbleInput(table) {
   let input = table.tHead.querySelector('input[type="search"]')
   if (!input) {
     ;((input = document.createElement('input')),
       (input.type = 'search'),
-      (input.placeholder = table.dataset.sbPlaceholder ?? '...'),
-      (input.className = table.dataset.sbInputClass || ''))
+      (input.placeholder = table.dataset.sbPlaceholder ?? globalConfig.sbPlaceholder ?? '🔍...'),
+      (input.className = table.dataset.sbInputClass ?? globalConfig.sbInputClass ?? ''))
     const td = document.createElement('td')
-    ;((td.colSpan = table.tHead?.rows[0].cells.length || 1), td.appendChild(input))
+    ;((td.colSpan = table.tHead.rows[0].cells.length || 1), td.appendChild(input))
     const tr = document.createElement('tr')
     ;((tr.id = `tr-${table.id}`),
       tr.appendChild(td),
-      table.tHead?.appendChild(tr),
+      table.tHead.appendChild(tr),
       input.addEventListener('input', () => {
         ;(generateSearchableDataValues(table), handleSearchableInput(input, table))
       }))
@@ -92,7 +75,6 @@ export {
   createSearchAbleInput,
   generateRandomId,
   generateSearchableDataValues,
-  getSearchableTableCellValue,
   handleSearchableInput,
   prepareSearchableTable,
   searchableEventlistener,

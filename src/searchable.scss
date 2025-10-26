@@ -6,11 +6,11 @@
     content: attr(data-sb-icon, '🔎');
     cursor: pointer;
     height: 25px;
+    min-width: 25px;
     position: absolute;
     right: 0;
     text-align: center;
     top: -25px;
-    width: 25px;
   }
 
   &.sb-left::before {
@@ -23,18 +23,22 @@
   }
 
   tbody {
-    &::before {
-      content: attr(data-sb-empty, '🔍 ¯\\_(ツ)_/¯');
-      display: table-row;
-      opacity: 0.7;
-      position: absolute;
-      text-align: center;
-      width: 100%;
-      z-index: -1;
-    }
+    position: relative;
+    z-index: 2;
   }
 
   thead {
+    &::after {
+      content: attr(data-sb-empty, '🔍 ¯\\_(ツ)_/¯');
+      display: table-row;
+      opacity: 0.7;
+      pointer-events: none;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      z-index: 1;
+    }
+
     input[type='search'] {
       box-sizing: border-box;
       width: 100%;

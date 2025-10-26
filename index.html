@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="src/searchable.scss" />
     <link
       rel="stylesheet"
@@ -16,7 +15,10 @@
     <style>
       h2 {
         margin-top: 1em;
-        margin-bottom: 1.5em;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
       }
       body {
         font-family: Arial, sans-serif;
@@ -26,15 +28,35 @@
           background-color: #1a1a1a;
         }
       }
+
       table {
         min-width: 300px;
+        /* border-collapse: collapse !important; */
+      }
+      #basic-table tr,
+      #massive-table tr {
+        background-color: white;
+        color: black;
+      }
+      /*dark mode tr*/
+      @media (prefers-color-scheme: dark) {
+        #basic-table tr,
+        #massive-table tr {
+          background-color: #333;
+          color: #eee;
+        }
       }
     </style>
   </head>
   <body>
     <h1>Searchable Demo</h1>
 
-    <h2>Default Searchable Table</h2>
+    This is a demo of the
+    <a href="https://github.com/tofsjonas/searchable">Searchable</a> library.
+
+    <h2>Default table</h2>
+
+    <p>No special classes or attributes.</p>
 
     <table id="basic-table" class="searchable">
       <thead>
@@ -48,13 +70,14 @@
       <tbody></tbody>
     </table>
 
-    <h2>Bootstrap Table with matching input classes</h2>
+    <h2>Bootstrap table</h2>
+
+    <p>With custom input classes and a left aligned search icon.</p>
 
     <table
       id="bootstrap-table"
       class="table table-bordered searchable sb-left"
-      data-sb-input-class="m-1 p-1 rounded-lg"
-      data-sb-icon="ᯤ"
+      data-sb-input-class="m-1 p-1 rounded-lg bg-primary text-white"
     >
       <thead>
         <tr>
@@ -67,9 +90,14 @@
       <tbody></tbody>
     </table>
 
-    <h2>Sortable + Searchable Input</h2>
+    <h2>Sortable + Searchable</h2>
 
-    <table id="sortable-table" class="searchable sortable">
+    <p>
+      Combined with
+      <a href="https://github.com/tofsjonas/sortable">Sortable</a>. Also has a custom search icon.
+    </p>
+
+    <table data-sb-icon="🔎 Search" id="sortable-table" class="searchable sortable">
       <thead>
         <tr>
           <th>Product</th>
@@ -83,19 +111,19 @@
 
     <h2>Massive Searchable Table</h2>
 
-    <div style="height: 400px; overflow: auto">
-      <table id="massive-table" class="searchable">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Stock</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    <p>Testing performance with 1000 rows.</p>
+
+    <table id="massive-table" class="searchable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
     <script type="module" src="/src/searchable.ts"></script>
     <script src="https://cdn.jsdelivr.net/gh/tofsjonas/sortable@latest/dist/sortable.min.js"></script>
