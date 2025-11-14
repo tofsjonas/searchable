@@ -3,7 +3,7 @@
   position: relative;
 
   &::before {
-    content: attr(data-sb-icon, '🔎');
+    content: attr(data-sb-icon, 'icon');
     cursor: pointer;
     height: 25px;
     min-width: 25px;
@@ -29,7 +29,7 @@
 
   thead {
     &::after {
-      content: attr(data-sb-empty, '🔍 ¯\\_(ツ)_/¯');
+      content: attr(data-sb-empty, 'empty');
       display: table-row;
       opacity: 0.7;
       pointer-events: none;

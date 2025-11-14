@@ -12,7 +12,7 @@ export function createSearchAbleInput(table: HTMLTableElement): void {
   if (!input) {
     input = document.createElement('input')
     input.type = 'search'
-    input.placeholder = table.dataset.sbPlaceholder ?? globalConfig.sbPlaceholder ?? '🔍...'
+    input.placeholder = table.dataset.sbPlaceholder ?? globalConfig.sbPlaceholder ?? 'placeholder'
     input.className = table.dataset.sbInputClass ?? globalConfig.sbInputClass ?? ''
 
     const td = document.createElement('td') // td, since we want it to play nice with sortable

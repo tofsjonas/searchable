@@ -1,7 +1,7 @@
 # Compact version with aligned columns
 printf "%-40s %10s %10s %10s %10s %s\n" "File" "Original" "KB" "Gzipped" "KB" "Path"
 printf "%-40s %10s %10s %10s %10s %s\n" "----" "--------" "--" "-------" "--" "----"
-for file in dist/*.js dist/**/*.js; do
+for file in dist/*.js; do
     if [ -f "$file" ]; then
         original=$(wc -c < "$file")
         compressed=$(gzip -c "$file" | wc -c)

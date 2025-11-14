@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .searchable {
   margin-top: 25px;
   position: relative;
@@ -7,11 +6,11 @@
   content: attr(data-sb-icon, '🔎');
   cursor: pointer;
   height: 25px;
+  min-width: 25px;
   position: absolute;
   right: 0;
   text-align: center;
   top: -25px;
-  min-width: 25px;
 }
 .searchable.sb-left:before {
   left: 0;
@@ -25,14 +24,14 @@
   z-index: 2;
 }
 .searchable thead:after {
-  content: attr(data-sb-empty, '🔍 ¯\\_(ツ)_/¯');
+  content: attr(data-sb-empty, 'No results found');
   display: table-row;
   opacity: 0.7;
+  pointer-events: none;
   position: absolute;
   text-align: center;
   width: 100%;
   z-index: 1;
-  pointer-events: none;
 }
 .searchable thead input[type='search'] {
   box-sizing: border-box;

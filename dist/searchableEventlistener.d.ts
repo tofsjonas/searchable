@@ -1,1 +1,1 @@
-export declare function searchableEventlistener(event: MouseEvent): void
+export declare function searchableEventListener(event: MouseEvent): void

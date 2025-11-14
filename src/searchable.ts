@@ -1,4 +1,4 @@
 import './searchable.scss'
-import { searchableEventlistener } from './searchableEventlistener'
+import { searchableEventListener } from './searchableEventListener'
 
-document.addEventListener('click', searchableEventlistener)
+document.addEventListener('click', searchableEventListener)

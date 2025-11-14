@@ -1,6 +1,6 @@
 import { toggleSearchable } from './toggleSearchable'
 
-export function searchableEventlistener(event: MouseEvent) {
+export function searchableEventListener(event: MouseEvent) {
   // Find the closest .searchable table ancestor
   const table = (event.target as HTMLElement).closest('table.searchable')
   if (!table) return // Not a click on a searchable table
