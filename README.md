@@ -46,7 +46,7 @@ Just include the JavaScript+CSS and it works automatically. No function calls ne
 
 ## Features
 
-- **1.46K** minified (824 bytes gzipped)
+- **1.50K** minified (833 bytes gzipped)
 - **Real-time search** - filter as you type (case-insensitive)
 - **Works with dynamic tables** - JavaScript generated content supported
 - **Lightning fast** - handles large tables smoothly
