@@ -30,8 +30,21 @@
       }
 
       table {
-        min-width: 300px;
+        min-width: 550px;
         /* border-collapse: collapse !important; */
+        table-layout: fixed;
+      }
+      table th:nth-child(1) {
+        width: 40%;
+      }
+      table th:nth-child(2),
+      table th:nth-child(3),
+      table th:nth-child(4) {
+        width: 20%;
+      }
+      table th:nth-child(4),
+      table td:nth-child(4) {
+        text-align: right;
       }
       #basic-table tr,
       #massive-table tr {
@@ -77,7 +90,7 @@
     <table
       id="bootstrap-table"
       class="table table-bordered searchable sb-left"
-      data-sb-input-class="m-1 p-1 rounded-lg bg-primary text-white"
+      data-sb-input-class="input m-1 p-1 rounded bg-primary text-white"
     >
       <thead>
         <tr>
