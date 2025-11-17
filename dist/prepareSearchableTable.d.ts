@@ -1,1 +1,1 @@
-export declare function prepareSearchableTable(table: HTMLTableElement): void
+export declare function prepareSearchableTable(table: HTMLTableElement): void;

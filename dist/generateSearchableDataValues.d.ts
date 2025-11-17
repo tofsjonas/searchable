@@ -1,1 +1,1 @@
-export declare function generateSearchableDataValues(table: HTMLTableElement): Promise<void>
+export declare function generateSearchableDataValues(table: HTMLTableElement): Promise<void>;

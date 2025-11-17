@@ -1,1 +1,1 @@
-export declare function toggleSearchable(table: HTMLTableElement): void
+export declare function toggleSearchable(table: HTMLTableElement): void;

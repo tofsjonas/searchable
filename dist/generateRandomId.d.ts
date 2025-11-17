@@ -1,1 +1,1 @@
-export declare function generateRandomId(): string
+export declare function generateRandomId(): string;

@@ -1,1 +1,1 @@
-export declare function createSearchAbleInput(table: HTMLTableElement): void
+export declare function createSearchAbleInput(table: HTMLTableElement): void;
