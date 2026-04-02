@@ -1,1 +1,40 @@
-.searchable{margin-top:25px;position:relative}.searchable:before{content:attr(data-sb-icon,"🔎");cursor:pointer;height:25px;min-width:25px;position:absolute;right:0;text-align:center;top:-25px}.searchable.sb-left:before{left:0;right:auto}.searchable:hover:before{transform:scale(1.1)}.searchable tbody{position:relative;z-index:2}.searchable thead:after{content:attr(data-sb-empty,"Результатов не найдено");display:table-row;opacity:.7;pointer-events:none;position:absolute;text-align:center;width:100%;z-index:1}.searchable thead input[type=search]{box-sizing:border-box;width:100%}
+.searchable {
+  margin-top: 25px;
+  position: relative;
+}
+.searchable:before {
+  content: attr(data-sb-icon, '🔎');
+  cursor: pointer;
+  text-align: center;
+  min-width: 25px;
+  height: 25px;
+  position: absolute;
+  top: -25px;
+  right: 0;
+}
+.searchable.sb-left:before {
+  left: 0;
+  right: auto;
+}
+.searchable:hover:before {
+  transform: scale(1.1);
+}
+.searchable tbody {
+  z-index: 2;
+  position: relative;
+}
+.searchable thead:after {
+  content: attr(data-sb-empty, 'Результатов не найдено');
+  opacity: 0.7;
+  pointer-events: none;
+  text-align: center;
+  z-index: -1;
+  width: 100%;
+  display: table-row;
+  position: absolute;
+}
+.searchable thead input[type='search'] {
+  box-sizing: border-box;
+  width: 100%;
+}
+/*$vite$:1*/

@@ -1,76 +1,84 @@
 ;(function (document) {
-  let running = !1,
-    rerun = !1
-  async function generateSearchableDataValues(table) {
-    if (running) {
-      rerun = !0
+  //#region src/generateSearchableDataValues.ts
+  var e = !1,
+    t = !1
+  async function n(n) {
+    if (e) {
+      t = !0
       return
     }
-    running = !0
+    e = !0
     do {
-      rerun = !1
-      const cells = table.querySelectorAll('tbody td:not([data-val])')
-      for (let i = 0; i < cells.length; i++)
-        cells[i].setAttribute('data-val', (cells[i].textContent ?? '').trim().toLowerCase())
-    } while (rerun)
-    running = !1
+      t = !1
+      let e = n.querySelectorAll('tbody td:not([data-val])')
+      for (let t = 0; t < e.length; t++) e[t].setAttribute('data-val', (e[t].textContent ?? '').trim().toLowerCase())
+    } while (t)
+    e = !1
   }
-  function handleSearchableInput(input, table) {
-    const filter = input.value.toLowerCase()
-    let style = document.getElementById('css-' + table.id)
-    style ||
-      ((style = document.createElement('style')), (style.id = 'css-' + table.id), document.head.appendChild(style))
-    let css = ''
-    ;(filter &&
-      (css = `#${table.id} tbody tr{display:none;}
-#${table.id} tbody tr:has([data-val*="${filter}"]){display:table-row;}`),
-      (style.innerHTML = css))
+  //#endregion
+  //#region src/handleSearchableInput.ts
+  function r(e, t) {
+    let n = e.value.toLowerCase(),
+      r = document.getElementById('css-' + t.id)
+    r || ((r = document.createElement('style')), (r.id = 'css-' + t.id), document.head.appendChild(r))
+    let i = ''
+    ;(n &&
+      (i = `#${t.id} tbody tr{display:none;}
+#${t.id} tbody tr:has([data-val*="${n}"]){display:table-row;}`),
+      (r.innerHTML = i))
   }
-  const globalConfig = document.currentScript.dataset ?? {}
-  function createSearchAbleInput(table) {
-    let input = table.tHead.querySelector('input[type="search"]')
-    if (!input) {
-      ;((input = document.createElement('input')),
-        (input.type = 'search'),
-        (input.placeholder = table.dataset.sbPlaceholder ?? globalConfig.sbPlaceholder ?? 'Поиск...'),
-        (input.className = table.dataset.sbInputClass ?? globalConfig.sbInputClass ?? ''))
-      const td = document.createElement('td')
-      ;((td.colSpan = table.tHead.rows[0].cells.length || 1), td.appendChild(input))
-      const tr = document.createElement('tr')
-      ;((tr.id = `tr-${table.id}`),
-        tr.appendChild(td),
-        table.tHead.appendChild(tr),
-        input.addEventListener('input', () => {
-          ;(generateSearchableDataValues(table), handleSearchableInput(input, table))
+  //#endregion
+  //#region src/createSearchableInput.ts
+  var i = document.currentScript.dataset ?? {}
+  function a(e) {
+    let t = e.tHead.querySelector('input[type="search"]')
+    if (!t) {
+      ;((t = document.createElement('input')),
+        (t.type = 'search'),
+        (t.placeholder = e.dataset.sbPlaceholder ?? i.sbPlaceholder ?? 'Поиск...'),
+        (t.className = e.dataset.sbInputClass ?? i.sbInputClass ?? ''))
+      let a = document.createElement('td')
+      ;((a.colSpan = e.tHead.rows[0].cells.length || 1), a.appendChild(t))
+      let o = document.createElement('tr')
+      ;((o.id = `tr-${e.id}`),
+        o.appendChild(a),
+        e.tHead.appendChild(o),
+        t.addEventListener('input', () => {
+          ;(n(e), r(t, e))
         }))
     }
-    input.focus()
+    t.focus()
   }
-  function generateRandomId() {
+  //#endregion
+  //#region src/generateRandomId.ts
+  function o() {
     return /* @__PURE__ */ new Date().getTime().toString(36) + '-' + Math.random().toString(36).substring(2, 9)
   }
-  function prepareSearchableTable(table) {
-    ;(table.id || (table.id = 'sb-' + generateRandomId()),
-      createSearchAbleInput(table),
-      generateSearchableDataValues(table))
+  //#endregion
+  //#region src/prepareSearchableTable.ts
+  function s(e) {
+    ;((e.id ||= 'sb-' + o()), a(e), n(e))
   }
-  function toggleSearchable(table) {
-    if (table.classList.contains('searching')) {
-      const tr = document.getElementById(`tr-${table.id}`)
-      ;(tr && tr.remove(), table.classList.remove('searching'))
-      const style = document.getElementById('css-' + table.id)
-      style && style.remove()
-    } else (table.classList.add('searching'), prepareSearchableTable(table))
+  //#endregion
+  //#region src/toggleSearchable.ts
+  function c(e) {
+    if (e.classList.contains('searching')) {
+      let t = document.getElementById(`tr-${e.id}`)
+      ;(t && t.remove(), e.classList.remove('searching'))
+      let n = document.getElementById('css-' + e.id)
+      n && n.remove()
+    } else (e.classList.add('searching'), s(e))
   }
-  function searchableEventListener(event) {
-    const table = event.target.closest('table.searchable')
-    if (!table) return
-    const rect = table.getBoundingClientRect()
-    ;(event.clientX < rect.left ||
-      event.clientX > rect.right ||
-      event.clientY < rect.top ||
-      event.clientY > rect.bottom) &&
-      toggleSearchable(table)
+  //#endregion
+  //#region src/searchableEventListener.ts
+  function l(e) {
+    let t = e.target.closest('table.searchable')
+    if (!t) return
+    let n = t.getBoundingClientRect()
+    ;(e.clientX < n.left || e.clientX > n.right || e.clientY < n.top || e.clientY > n.bottom) && c(t)
   }
-  typeof document < 'u' && document.addEventListener('click', searchableEventListener)
+  //#endregion
+  //#region src/index.ts
+  typeof document < 'u' && document.addEventListener('click', l)
+  //#endregion
 })(document)
