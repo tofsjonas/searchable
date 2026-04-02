@@ -12,6 +12,7 @@ build
 dist-ssr
 *.local
 coverage
+.specstory
 
 # Editor directories and files
 .vscode/*

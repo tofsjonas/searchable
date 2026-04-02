@@ -40,6 +40,7 @@ Just include the JavaScript+CSS and it works automatically. No function calls ne
   - [Empty State Message](#empty-state-message)
     - [Per table](#per-table)
     - [Globally](#globally)
+  - [Table Background](#table-background)
 - [How It Works](#how-it-works)
 
 <!-- /TOC -->
@@ -246,6 +247,16 @@ Using CSS
 ```css
 .searchable thead::after {
   content: 'Nothing here, move along' !important;
+}
+```
+
+### Table Background
+
+Set a background on `.searchable` (or the table container) so the empty-state pseudo-element is not visible through transparent table areas.
+
+```css
+.searchable {
+  background: #fff;
 }
 ```
 
