@@ -252,11 +252,21 @@ Using CSS
 
 ### Table Background
 
-Set a background on `.searchable` (or the table container) so the empty-state pseudo-element is not visible through transparent table areas.
+Set a background so the empty-state pseudo-element is not visible through transparent table areas.
 
 ```css
-.searchable {
-  background: #fff;
+.searchable,
+.searchable td {
+  background: white;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .searchable,
+  .searchable td {
+    background: #333;
+    color: #fff;
+  }
 }
 ```
 

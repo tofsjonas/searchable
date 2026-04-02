@@ -2,6 +2,12 @@
 
 # Change Log
 
+## [0.1.2] - 2026-04-02
+
+### Fixed
+
+- `z-index=-1` on `thead:after` element, so "empty" text does not shine through
+
 ## [0.1.1] - 2025-11-17
 
 ### Fixed

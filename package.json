@@ -1,7 +1,7 @@
 {
   "name": "searchable",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./dist/searchable.iife.js",
   "module": "./dist/searchable.es.js",
   "unpkg": "./dist/searchable.min.js",
@@ -49,7 +49,7 @@
     "file-sizes": "./scripts/file-sizes.sh",
     "copy-files": "tsx ./scripts/copy-files.ts",
     "prettier": "prettier --config .prettierrc.js --write ./dist/searchable.*.js --ignore-path /dev/null",
-    "build": "tsc && vite build && npm run es-to-iife && npm run prettier && npm run compile && npm run translate && npm run copy-files && npm run file-sizes",
+    "build": "tsc && vite build && npm run es-to-iife && npm run prettier && npm run compile && npm run format && npm run translate && npm run copy-files && npm run file-sizes",
     "test": "vitest",
     "compile": "google-closure-compiler --js=./dist/searchable.iife.js --js_output_file=./dist/searchable.min.js",
     "test:coverage": "vitest --coverage",
