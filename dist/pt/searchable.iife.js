@@ -72,10 +72,9 @@
   //#endregion
   //#region src/searchableEventListener.ts
   function l(e) {
+    if (e.target.nodeName !== 'TABLE') return
     let t = e.target.closest('table.searchable')
-    if (!t) return
-    let n = t.getBoundingClientRect()
-    ;(e.clientX < n.left || e.clientX > n.right || e.clientY < n.top || e.clientY > n.bottom) && c(t)
+    t && c(t)
   }
   //#endregion
   //#region src/index.ts

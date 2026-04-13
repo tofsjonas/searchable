@@ -12,6 +12,7 @@
   right: 0;
   text-align: center;
   top: -25px;
+  z-index: 3;
 }
 
 .searchable.sb-left::before {

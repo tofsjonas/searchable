@@ -2,6 +2,12 @@
 
 # Change Log
 
+## [0.2.0] - 2026-04-13
+
+### Added
+
+- The search icon can now be positioned inside the table using CSS
+
 ## [0.1.2] - 2026-04-02
 
 ### Fixed

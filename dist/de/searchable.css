@@ -6,6 +6,7 @@
   content: attr(data-sb-icon, '🔎');
   cursor: pointer;
   text-align: center;
+  z-index: 3;
   min-width: 25px;
   height: 25px;
   position: absolute;

@@ -28,6 +28,8 @@ Just include the JavaScript+CSS and it works automatically. No function calls ne
 - [Usage](#usage)
 - [Configuration](#configuration)
   - [Button Position](#button-position)
+    - [Left vs Right Per table](#left-vs-right-per-table)
+    - [Globally using CSS](#globally-using-css)
   - [Custom Button Icon](#custom-button-icon)
     - [Per table](#per-table)
     - [Globally](#globally)
@@ -47,7 +49,7 @@ Just include the JavaScript+CSS and it works automatically. No function calls ne
 
 ## Features
 
-- **1.50K** minified (833 bytes gzipped)
+- **1.41K** minified (786 bytes gzipped)
 - **Real-time search** - filter as you type (case-insensitive)
 - **Works with dynamic tables** - JavaScript generated content supported
 - **Lightning fast** - handles large tables smoothly
@@ -165,11 +167,22 @@ A search button appears automatically. Click it to show/hide the search input.
 
 ### Button Position
 
+#### Left vs Right Per table
+
 ```html
 <table class="searchable sb-left"></table>
 <!-- left -->
 <table class="searchable"></table>
 <!-- right (default) -->
+```
+
+#### Globally using CSS
+
+```css
+.searchable::before {
+  top: 9px;
+  left: 80px;
+}
 ```
 
 ### Custom Button Icon
