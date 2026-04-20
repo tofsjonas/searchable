@@ -5,7 +5,8 @@ import dts from 'vite-plugin-dts'
 import packageJson from './package.json'
 
 const getPackageName = () => {
-  return packageJson.name
+  // Strip scope (e.g. "@tofsjonas/searchable" -> "searchable")
+  return packageJson.name.replace(/^@[^/]+\//, '')
 }
 
 const getPackageNameCamelCase = () => {
@@ -49,10 +50,10 @@ export default defineConfig({
       },
     },
   },
-  test: {
-    watch: false,
-    environment: 'jsdom',
-  },
+  // test: {
+  //   watch: false,
+  //   environment: 'jsdom',
+  // },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

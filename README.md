@@ -20,6 +20,7 @@ Just include the JavaScript+CSS and it works automatically. No function calls ne
 
 - [Features](#features)
 - [Installation](#installation)
+  - [npm](#npm)
   - [CDN jsDelivr](#cdn-jsdelivr)
   - [Local files](#local-files)
 - [Languages](#languages)
@@ -60,6 +61,26 @@ Just include the JavaScript+CSS and it works automatically. No function calls ne
 - **Modern browsers** - requires CSS `:has()` support [(Chrome 105+, Firefox 121+, Safari 15.4+)](https://caniuse.com/css-has)
 
 ## Installation
+
+### npm
+
+```bash
+npm install @tofsjonas/searchable
+```
+
+Import in your JavaScript/TypeScript:
+
+```js
+import '@tofsjonas/searchable' // default = english version
+import '@tofsjonas/searchable/dist/searchable.css'
+```
+
+Or for a specific language (e.g., Swedish):
+
+```js
+import '@tofsjonas/searchable/dist/sv/searchable.min.js'
+import '@tofsjonas/searchable/dist/sv/searchable.min.css'
+```
 
 ### CDN (jsDelivr)
 
