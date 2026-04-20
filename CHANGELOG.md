@@ -2,6 +2,24 @@
 
 # Change Log
 
+## [0.3.1] - 2026-04-20
+
+### Fixed
+
+- Corrected filename casing for `searchableEventListener` to fix Linux/CI module resolution
+
+### Changed
+
+- Updated release workflow to publish on version tags (`v*`) and deploy Pages only from `main`
+- Updated artifact actions in CI (`actions/upload-artifact@v7`, `actions/download-artifact@v8`)
+- Updated CI Node.js runtime to 24
+
+## [0.3.0] - 2026-04-20
+
+### Added
+
+- npm installation option (`npm install @tofsjonas/searchable`) in documentation
+
 ## [0.2.0] - 2026-04-13
 
 ### Added
